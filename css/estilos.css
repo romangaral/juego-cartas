@@ -1,0 +1,34 @@
+*{
+    background-color: rgb(162, 253, 253);
+}
+
+h1{
+    text-align: center;
+    text-decoration-line: underline;
+    font-size: 55px;
+}
+
+#nombre1{
+    text-transform: capitalize;
+}
+
+#nombre2{
+    text-transform: capitalize;
+}
+
+.nombres{
+    border-bottom:solid 1px grey;
+    text-align: center;
+}
+
+#resultado{
+    margin-left: 50px;
+}
+
+#final{
+    border-top: solid 1px grey;
+}
+
+.final{
+    margin: 50px;
+}
