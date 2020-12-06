@@ -125,7 +125,7 @@ function comenzarPartida() {
   
   do {
     jugadaEnCurso();
-  } while (jugador1.getIntentos() <= 2);
+  } while (jugador1.getIntentos() <= 10);
   
 
   switch(jugador1.getMatch()){
