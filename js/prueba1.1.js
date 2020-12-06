@@ -1,11 +1,12 @@
 //--------------------------------VARIABLES----------------------------
-
+/*Variables constantes con los valores de toda la baraja */
 const valor = ["1", "2", "3", "4", "5", "6", "7", "S", "C", "R"];
 const palo = ["OR", "BA", "CO", "ES"];
 const baraja = [];
 
 //----------------------------------CLASES------------------------------
-
+/*Clase carta con un constructor con dos parametros, el nombre de 
+la carta sera la concatenacion de esos parametros */
 class Carta {
   constructor(valor, palo) {
     this.valor = valor;
@@ -13,7 +14,8 @@ class Carta {
     this.nombre = valor + palo;
   }
 }
-
+/*Clase jugador con tres parametros que se inicializan cuando creamos el objeto,
+tenemos dos metodos que son los que aumentaran los intentos y los matchs */
 class Jugador {
   constructor(nombre, intentos, match) {
     this.nombre = nombre;
@@ -35,7 +37,7 @@ class Jugador {
 }
 
 //-------------------------------FUNCIONES--------------------------
-
+/*Inicializamos la baraja creando objetos carta uniendo el valor y el palo */
 function inicializaBaraja() {
   for (let i = 0; i < valor.length; i++) {
     for (let j = 0; j < palo.length; j++) {
@@ -45,7 +47,8 @@ function inicializaBaraja() {
   }
 }
 
-
+/*Funcion para pedir los nombres y comprobar que 
+el campo no esta vacio */
 function pideNombres() {
   do {
     Jugador.nombre = prompt("Jugador, introduce tu nombre:");
@@ -65,7 +68,9 @@ function pideNombres() {
   return Jugador.nombre;
 }
 
-
+/*solicitamos una carta por teclado, la combertimos a mayusculas, y verificamos
+que se encuentra en el array baraja, si no es asi genera una alerta y vuelve a 
+pedirla */
 function eligeCarta(jugador) {
   do {
     var apuesta = prompt(jugador.nombre + " elige una carta");
@@ -80,7 +85,7 @@ function eligeCarta(jugador) {
   } while (baraja.includes(apuestaMay) == false);
 }
 
-
+/*Funcion que compara las apuestas de los jugadores y comprueba si son iguales */
 function jugadaEnCurso(apuesta1, apuesta2) {
   var apuesta1 = eligeCarta(jugador1);
   var apuesta2 = eligeCarta(jugador2);
@@ -107,27 +112,32 @@ function jugadaEnCurso(apuesta1, apuesta2) {
   }
 }
 
-
+/*Funcion principal que comienza la partida, tiene dentro las demas funciones 
+para ir inicializandolas */
 function comenzarPartida() {
   var fin = document.querySelector(".final");
 
   inicializaBaraja();
 
+  //creamos el objeto jugador 1
   jugador1 = new Jugador(pideNombres(), 0, 0);
   let nombre1 = document.getElementById("nombre1");
   nombre1.appendChild(document.createTextNode(`Jugador 1: ${jugador1.nombre}`));
   nombre1.appendChild(document.createElement("br"));
   nombre1.appendChild(document.createElement("br"));
 
+  //creamos el objeto jugador 2
   jugador2 = new Jugador(pideNombres(), 0, 0);
   let nombre2 = document.getElementById("nombre1");
   nombre2.appendChild(document.createTextNode(`Jugador 2: ${jugador2.nombre}`));
   
+  //Realizamos los 10 intentos dentro del bucle do-while
   do {
     jugadaEnCurso();
   } while (jugador1.getIntentos() <= 10);
   
-
+  /*Dependiendo de los match que generemos, enviaremos un mensaje al final
+  de la partida */
   switch(jugador1.getMatch()){
     case 0:
     case 1:
